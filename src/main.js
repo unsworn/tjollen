@@ -14,7 +14,7 @@ var settings = {
 // Load config file, fail if not found.
 var quit = false;
 try {
-  var config = require(app.getPath('appData') + '/tjollen/config.js');
+  var config = require(app.getPath('appData') + '/Tjollen/config.js');
 } catch(err) {
   console.log('err', err);
   dialog.showMessageBox({message: err, buttons:['ok']});
