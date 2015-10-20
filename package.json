@@ -1,0 +1,30 @@
+{
+  "name": "tjollen",
+  "productName": "Tjollen",
+  "version": "0.0.2",
+  "description": "Simple kiosk app for running fullscreen web apps",
+  "main": "src/main.js",
+  "scripts": {
+    "app": "./node_modules/.bin/electron .",
+    "build": "electron-packager . Tjollen --platform=darwin --arch=x64 --version=0.34.0 --out=dist",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/unsworn/tjollen"
+  },
+  "keywords": [
+    "kiosk",
+    "web"
+  ],
+  "author": "Unsworn",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/unsworn/tjollen/issues"
+  },
+  "homepage": "https://github.com/unsworn/tjollen",
+  "devDependencies": {
+    "electron-packager": "^5.1.0",
+    "electron-prebuilt": "^0.34.0"
+  }
+}
