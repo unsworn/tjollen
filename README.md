@@ -24,12 +24,7 @@ module.exports = {
 ```sh
 $ git clone ...
 $ npm install
-```
-
-Run app
-
-```sh
-$ npm run app
+$ npm start
 ```
 
 ### Development builds
