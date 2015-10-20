@@ -9,7 +9,7 @@ module.exports = function(app, win) {
           label: 'Toggle kiosk mode',
           accelerator: 'Command+Shift+F',
           click: function() {
-            app.toggleFullscreen();
+            app.toggleKiosk();
           }
         },
         {
