@@ -5,9 +5,10 @@
   "description": "Simple kiosk app for running fullscreen web apps",
   "main": "src/main.js",
   "scripts": {
-    "app": "./node_modules/.bin/electron .",
-    "build": "electron-packager . Tjollen --platform=darwin --arch=x64 --version=0.34.0 --out=dist",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "./node_modules/.bin/electron .",
+    "build": "electron-packager . Tjollen --platform=darwin --arch=x64 --version=0.34.0 --out=dist --icon=./assets/tjollen.icns --overwrite",
+    "version": "npm version patch",
+    "deploy": "npm run version && git push --tags origin master"
   },
   "repository": {
     "type": "git",
