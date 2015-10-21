@@ -1,7 +1,7 @@
 {
   "name": "tjollen",
   "productName": "Tjollen",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Simple kiosk app for running fullscreen web apps",
   "main": "src/main.js",
   "scripts": {
