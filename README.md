@@ -37,5 +37,6 @@ $ open dist/Tjollen-darwin-x64/Tjollen.app
 ### Deploy a new version
 
 1. Commit your changes
+2. `npm run build` to build the app
 2. `npm run deploy` will bump npm version, create git tag and push to git
 3. Manually upload the file in the `dist` folder to create a new Github release

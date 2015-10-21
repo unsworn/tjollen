@@ -6,12 +6,14 @@ var Menu = require('menu');
 // Report crashes to our server.
 //require('crash-reporter').start();
 
+// Globals
 var settings = {
   defaultWidth: 800,
   defaultHeight: 600,
 };
 
 var win = null;
+var config = null;
 
 function setupWindow(isKiosk) {
   var size = require('screen').getPrimaryDisplay().size;
@@ -54,7 +56,7 @@ app.toggleKiosk = function() {
 app.on('ready', function() {
   // Load config file, fail if not found.
   try {
-    var config = require(app.getPath('appData') + '/Tjollen/config.js');
+    config = require(app.getPath('appData') + '/Tjollen/config.js');
   } catch(err) {
     dialog.showMessageBox({message: 'Failed to load config.js file!\n\n' + err, buttons:['OK']});
     app.quit();
