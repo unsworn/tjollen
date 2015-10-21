@@ -6,8 +6,9 @@
   "main": "src/main.js",
   "scripts": {
     "start": "./node_modules/.bin/electron .",
-    "build": "electron-packager . Tjollen --platform=darwin --arch=x64 --version=0.34.0 --out=dist --icon=./assets/tjollen.icns --overwrite",
+    "build": "electron-packager . $npm_package_productName --platform=darwin --arch=x64 --version=0.34.0 --out=dist --icon=./assets/tjollen.icns --overwrite",
     "version": "npm version patch",
+    "testo": "echo $npm_package_version",
     "deploy": "npm run version && git push --tags origin master"
   },
   "repository": {

@@ -27,9 +27,20 @@ function setupWindow(isKiosk) {
     transparent: isKiosk,
     resizable: !isKiosk,
   });
+  
+  //win.openDevTools();
+
+  win.webContents.on('dom-ready', function() {
+    console.log('dom ready!');
+    
+    if (config.hideCursor) {
+      hideMouseCursor();    
+    }
+  });
 
   // Load content
   win.loadUrl(config.url);
+  //win.loadUrl('file://' + __dirname + '/index.html');
 
   // Create menus
   var menuTemplate = require('./menu')(app, win);
@@ -37,10 +48,23 @@ function setupWindow(isKiosk) {
 
   Menu.setApplicationMenu(menu);
 
+
   // Emitted when the window is closed.
   win.on('closed', function() {
     win = null;
   });
+}
+
+// Inject cursor hiding CSS and, hrrm, force focus
+// by programmatically clicking on the document
+function hideMouseCursor() {
+    win.webContents.insertCSS('html {cursor: none}');
+
+    win.webContents.sendInputEvent({
+      type: 'mouseDown',
+      x: 0,
+      y: 0
+    });
 }
 
 app.toggleKiosk = function() {
@@ -48,7 +72,6 @@ app.toggleKiosk = function() {
 
   // We need to tear down and reload the window to change it
   win.destroy();
-
   setupWindow(isKiosk);
 }
 
@@ -63,7 +86,6 @@ app.on('ready', function() {
   }
 
   var isKiosk = (typeof config.kiosk === 'boolean') ? config.kiosk : true;
-
   setupWindow(isKiosk);
 });
 
