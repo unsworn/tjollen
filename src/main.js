@@ -11,16 +11,6 @@ var settings = {
   defaultHeight: 600,
 };
 
-// Load config file, fail if not found.
-var quit = false;
-try {
-  var config = require(app.getPath('appData') + '/Tjollen/config.js');
-} catch(err) {
-  console.log('err', err);
-  dialog.showMessageBox({message: err, buttons:['ok']});
-  quit = true;
-}
-
 var win = null;
 
 function setupWindow(isKiosk) {
@@ -60,8 +50,13 @@ app.toggleKiosk = function() {
   setupWindow(isKiosk);
 }
 
+// Entry point
 app.on('ready', function() {
-  if (quit) {
+  // Load config file, fail if not found.
+  try {
+    var config = require(app.getPath('appData') + '/Tjollen/config.js');
+  } catch(err) {
+    dialog.showMessageBox({message: 'Failed to load config.js file!\n\n' + err, buttons:['OK']});
     app.quit();
   }
 

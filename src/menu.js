@@ -25,7 +25,7 @@ module.exports = function(app, win) {
         {
           label: 'About tjollen',
           click: function() {
-            dialog.showMessageBox({message: 'Tjollen v' + app.getVersion() + '\n by Unsworn', buttons:['ok']});
+            dialog.showMessageBox({message: 'Tjollen v' + app.getVersion() + '\nby Unsworn', buttons:['OK']});
           }
         },
         {
