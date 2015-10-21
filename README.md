@@ -1,6 +1,6 @@
 # Tjollen
 
-:fries: Simple kiosk app for running feta och salta web apps
+:fries: Simple kiosk app for running feta och salta web apps. *Work in Progress!*
 
 ## Usage
 
@@ -13,7 +13,10 @@ module.exports = {
   url: 'http://www.unsworn.org',
 
   // Start in fullscreen or not
-  kiosk: true
+  kiosk: true,
+
+  // Show or hide mouse cursor
+  hideCursor: true,
 };
 ```
 
