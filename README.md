@@ -5,7 +5,7 @@
 ## Usage
 
 - Download the latest version from the Releases page.
-- Create the file `~/Library/Application Suppport/tjollen/config.js`. It should look like this: 
+- Create the file `~/Library/Application Suppport/Tjollen/config.js`. It should look like this: 
 
 ```js
 module.exports = {
