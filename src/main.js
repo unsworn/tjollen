@@ -24,15 +24,14 @@ function setupWindow(isKiosk) {
     fullscreen: false, // Must be `false` due to https://github.com/atom/electron/issues/1054
     frame: !isKiosk,
     kiosk: isKiosk,
-    transparent: isKiosk,
+    //transparent: isKiosk,
     resizable: !isKiosk,
+    'always-on-top': isKiosk,
   });
   
   //win.openDevTools();
 
   win.webContents.on('dom-ready', function() {
-    console.log('dom ready!');
-    
     if (config.hideCursor) {
       hideMouseCursor();    
     }
