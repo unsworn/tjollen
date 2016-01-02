@@ -9,7 +9,8 @@ var Menu = require('menu');
 // Globals
 var settings = {
   defaultWidth: 800,
-  defaultHeight: 600,
+  defaultHeight: 3600,
+  windowDelay: 0,
 };
 
 var win = null;
@@ -21,10 +22,9 @@ function setupWindow(isKiosk) {
   win = new BrowserWindow({
     width: isKiosk ? size.width : settings.defaultWidth,
     height: isKiosk ? size.height : settings.defaultHeight,
-    fullscreen: false, // Must be `false` due to https://github.com/atom/electron/issues/1054
+    fullscreen: isKiosk, // Must be `false` due to https://github.com/atom/electron/issues/1054
     frame: !isKiosk,
     kiosk: isKiosk,
-    //transparent: isKiosk,
     resizable: !isKiosk,
     'always-on-top': isKiosk,
   });
@@ -38,7 +38,7 @@ function setupWindow(isKiosk) {
   });
 
   // Load content
-  win.loadUrl(config.url);
+  win.loadURL(config.url);
   //win.loadUrl('file://' + __dirname + '/index.html');
 
   // Create menus
@@ -85,7 +85,13 @@ app.on('ready', function() {
   }
 
   var isKiosk = (typeof config.kiosk === 'boolean') ? config.kiosk : true;
-  setupWindow(isKiosk);
+  
+  // Maybe wait a bit before opening the window
+  setTimeout(
+    setupWindow,
+    config.windowDelay || settings.windowDelay || 0,
+    isKiosk
+  );
 });
 
 app.on('window-all-closed', function() {

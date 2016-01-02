@@ -17,6 +17,10 @@ module.exports = {
 
   // Show or hide mouse cursor
   hideCursor: true,
+
+  // Wait this many ms before creating windows.
+  // Useful in a kiosk environment with other applications running.
+  windowDelay: 5000,
 };
 ```
 
