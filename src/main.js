@@ -1,15 +1,12 @@
-var app = require('app');  // Module to control application life.
+var app = require('app'); 
 var dialog = require('dialog');
 var BrowserWindow = require('browser-window');
 var Menu = require('menu');  
 
-// Report crashes to our server.
-//require('crash-reporter').start();
-
 // Globals
 var settings = {
-  defaultWidth: 800,
-  defaultHeight: 3600,
+  defaultWidth: 1024,
+  defaultHeight: 1024,
   windowDelay: 0,
 };
 
@@ -22,7 +19,7 @@ function setupWindow(isKiosk) {
   win = new BrowserWindow({
     width: isKiosk ? size.width : settings.defaultWidth,
     height: isKiosk ? size.height : settings.defaultHeight,
-    fullscreen: isKiosk, // Must be `false` due to https://github.com/atom/electron/issues/1054
+    fullscreen: isKiosk, // hmm, should be `false` due to https://github.com/atom/electron/issues/1054
     frame: !isKiosk,
     kiosk: isKiosk,
     resizable: !isKiosk,
@@ -31,15 +28,18 @@ function setupWindow(isKiosk) {
   
   //win.openDevTools();
 
+  // Document is loaded
   win.webContents.on('dom-ready', function() {
     if (config.hideCursor) {
       hideMouseCursor();    
     }
+
+   //setTimeout(sendInput, 2000);
   });
 
   // Load content
   win.loadURL(config.url);
-  //win.loadUrl('file://' + __dirname + '/index.html');
+  //win.loadURL('file://' + __dirname + '/index.html');
 
   // Create menus
   var menuTemplate = require('./menu')(app, win);
@@ -47,11 +47,21 @@ function setupWindow(isKiosk) {
 
   Menu.setApplicationMenu(menu);
 
-
   // Emitted when the window is closed.
   win.on('closed', function() {
     win = null;
   });
+}
+
+// Just trying out engagement gesture - not working
+function sendInput() {
+  var inputEvent = {
+    type: 'keyUp',
+    keyCode: 'p', // 'p'
+  };
+
+  win.webContents.sendInputEvent(inputEvent);
+  win.webContents.executeJavaScript('document.getElementById("main").requestPointerLock()', true);
 }
 
 // Inject cursor hiding CSS and, hrrm, force focus
@@ -61,8 +71,8 @@ function hideMouseCursor() {
 
     win.webContents.sendInputEvent({
       type: 'mouseDown',
-      x: 0,
-      y: 0
+      x: 200,
+      y: 200
     });
 }
 
