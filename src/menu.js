@@ -20,6 +20,13 @@ module.exports = function(app, win) {
           }
         },
         {
+          label: 'Reload page',
+          accelerator: 'Command+R',
+          click: function() {
+            win.webContents.reload();
+          }
+        },
+        {
           type: 'separator'
         },
         {
